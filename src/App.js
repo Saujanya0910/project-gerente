@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 // css
 import './App.css'
 import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import Create from './pages/create/Create';
 import Dashboard from './pages/dashboard/Dashboard';
 import Login from './pages/login/Login';
@@ -15,9 +16,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
-
+        <Sidebar />
+        
         <div className="container">
+          <Navbar />
           <Routes>
             <Route 
               exact
