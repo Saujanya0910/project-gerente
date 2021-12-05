@@ -1,5 +1,5 @@
 {
-  "name": "the-dojo",
+  "name": "project-gerente",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "firebase": "8.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router": "^6.0.2",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"
