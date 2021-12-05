@@ -1,7 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // css
 import './App.css'
+
+// components
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Create from './pages/create/Create';
@@ -10,7 +12,6 @@ import Login from './pages/login/Login';
 import Project from './pages/project/Project';
 import Signup from './pages/signup/Signup';
 
-// components
 
 function App() {
   return (
@@ -22,7 +23,6 @@ function App() {
           <Navbar />
           <Routes>
             <Route 
-              exact
               path="/" 
               element={<Dashboard />}
             />
