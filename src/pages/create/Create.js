@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Select from 'react-select'
 import { useCollection } from '../../hooks/useCollection'
 import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useFirestore } from '../../hooks/useFirestore'
 
 // css
 import './Create.css'
-
 const categories = [
   { value: 'development', label: 'Development' },
   { value: 'design', label: 'Design' },
@@ -16,12 +17,19 @@ const categories = [
 ]
 
 export default function Create() {
-  
+  // users data collcn
   const { documents } = useCollection('users')
-  const [users, setUsers] = useState([])
+  // projs data doc
+  const { addDocument, response } = useFirestore('projects')
 
+  // auth user
   const { user } = useAuthContext()
 
+  // setup nav
+  let navigation = useNavigate()
+  
+  // states
+  const [users, setUsers] = useState([])
   const [name, setName] = useState('')
   const [details, setDetails] = useState('')
   const [dueDate, setDueDate] = useState('')
@@ -41,10 +49,12 @@ export default function Create() {
 
   }, [documents])
 
-  const handleSubmit = (e) => {
+  // submit function
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setFormError(null)
 
+    // category selection validations
     if(!category) {
       setFormError('Please select a project category')
       window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})
@@ -52,6 +62,7 @@ export default function Create() {
       return
     }
 
+    // assigned users selection validations
     if(!assignedUsers.length) {
       setFormError('Please select at least one user to assign the project to')
       window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})
@@ -59,12 +70,14 @@ export default function Create() {
       return
     }
 
+    // proj creator details
     const createdBy = {
       displayName: user.displayName,
       photoURL: user.photoURL,
       id: user.uid
     }
 
+    // create assigned users data
     const assignedUsersList = assignedUsers.map(user => {
       return {
         displayName: user.value.displayName,
@@ -73,6 +86,7 @@ export default function Create() {
       }
     })
 
+    // proj data body to be stored
     const projBody = {
       name,
       details,
@@ -83,8 +97,15 @@ export default function Create() {
       assignedUsersList
     }
 
-    console.log(projBody)
-    setFormError(null)
+    await addDocument(projBody)
+
+    if(!response.error) {
+      // on success, redirect
+      navigation('/')
+    }
+    // else {
+    //   set
+    // }
   }
 
   return (
@@ -140,10 +161,38 @@ export default function Create() {
           />
         </label>
 
-        <button className="btn">Add Project</button>
+        { !response.isPending &&
+          <button 
+            className="btn"
+          >
+            Add Project
+          </button>
+        }
 
-        { formError && <p className="error">{ formError }</p> }
-        {/* { error && <div className="error">{ error }</div> } */}
+        { response.isPending &&
+          <button 
+            className="btn"
+            disabled
+          >
+            Processing...
+          </button>
+        }
+
+        { response.error && 
+          <p 
+            className="error"
+          >
+            { response.error }
+          </p> 
+        }
+
+        { formError && 
+          <p 
+            className="error"
+          >
+            { formError }
+          </p> 
+        }
       </form>
     </div>
   )
