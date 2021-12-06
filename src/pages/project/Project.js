@@ -3,6 +3,7 @@ import { useDocument } from '../../hooks/useDocument'
 
 // css
 import './Project.css'
+import Projectcomments from './ProjectComments'
 import Projectsummary from './ProjectSummary'
 
 export default function Project() {
@@ -11,17 +12,18 @@ export default function Project() {
 
   const { document, error, isPending } = useDocument('projects', id)
 
-  if(error) { 
+  if(error) {
     return <div className="error">{ error }</div> 
   }
 
   return (
     <div className="project-details">
-      { isPending && <p>Loading...</p> }
+      { isPending && <div className="loading">Loading...</div> }
 
       { document && 
         <div>
           <Projectsummary project={document} />
+          <Projectcomments project={document} />
         </div>
       }
     </div>

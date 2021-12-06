@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from '../../components/Avatar';
 
 // css
-import './ProjectSummary.css'
+import './Project.css'
 
 const Projectsummary = ({ project }) => {
   return (
