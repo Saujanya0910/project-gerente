@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { timestamp } from '../../firebase/config';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { v4 as uuidv4 } from 'uuid'
+import { formatDistanceToNow } from 'date-fns'
 
 // css
 import './Project.css'
@@ -27,8 +28,6 @@ const Projectcomments = ({ project }) => {
       id: uuidv4()
     }
 
-    console.log(commentBody)
-
     await updateDocument(project.id, {
       // add cmnt body to existing array
       comments: [...project.comments, commentBody]
@@ -53,7 +52,7 @@ const Projectcomments = ({ project }) => {
             </div>
 
             <div className="comment-date">
-              <p>date</p>
+              <p>{ formatDistanceToNow(c.createdAt.toDate(), { addSuffix: true }) }</p>
             </div>
 
             <div className="comment-content">

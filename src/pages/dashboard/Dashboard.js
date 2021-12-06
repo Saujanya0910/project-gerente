@@ -34,13 +34,9 @@ export default function Dashboard() {
         return assignedToMe
       
       case 'development':
-
       case 'design':
-
       case 'marketing':
-
       case 'sales':
-
       case 'business':
         return doc.category === currentFilter
 

@@ -26,6 +26,13 @@ const Projectsummary = ({ project }) => {
     }
   }
 
+  const checkDueDate = (date) => {
+    let d1 = Date.parse(date)
+    let d2 = Date.parse(new Date().toDateString())
+
+    return d1 > d2
+  }
+
   return (
     <div>
       <div className="project-summary">
@@ -36,7 +43,10 @@ const Projectsummary = ({ project }) => {
         <p>By { project.createdBy.displayName }</p>
 
         <p className="due-date">
-          Project due by { project.dueDate.toDate().toDateString() }
+          Project due by <span className={`${checkDueDate(project.dueDate.toDate().toDateString()) ? 'active' : 'expired'}`}>
+            { project.dueDate.toDate().toDateString() }
+          </span>
+          {/* { project.dueDate.toDate().toDateString() } */}
         </p>
 
         <p className="details">

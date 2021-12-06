@@ -1,9 +1,8 @@
-const filterList = ['All', 'Mine', 'Development', 'Design', 'Marketing', 'Sales', 'Business']
+const filterList = ['all', 'mine', 'development', 'design', 'marketing', 'sales', 'business']
 
 export default function ProjectFilter({ currentFilter, changeFilter }) {
 
   const handleFilter = (filter) => {
-    console.log(filter)
     changeFilter(filter)
   }
 

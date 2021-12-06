@@ -20,6 +20,14 @@
   color: var(--text-color);
   font-size: 0.9em;
 }
+.project-list .active {
+  color: rgb(6, 243, 6);
+  font-size: 0.9em;
+}
+.project-list .expired {
+  color: rgb(252, 118, 118);
+  font-size: 0.9em;
+}
 .project-list .assigned-to {
   margin-top: 20px;
   padding-top: 10px;
