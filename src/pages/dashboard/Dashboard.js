@@ -33,15 +33,15 @@ export default function Dashboard() {
         })
         return assignedToMe
       
-      case 'Development':
+      case 'development':
 
-      case 'Design':
+      case 'design':
 
-      case 'Marketing':
+      case 'marketing':
 
-      case 'Sales':
+      case 'sales':
 
-      case 'Business':
+      case 'business':
         return doc.category === currentFilter
 
       default:
