@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import Avatar from '../../components/Avatar';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useFirestore } from '../../hooks/useFirestore';
+import ReactTooltip from 'react-tooltip';
 
 // css
 import './Project.css'
@@ -56,7 +57,13 @@ const Projectsummary = ({ project }) => {
         <div className="assigned-users">
           { project.assignedUsersList.map(user => (
               <div key={user.id}>
-                <Avatar src={user.photoURL} />
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a data-tip data-for='displayName'>
+                  <Avatar src={user.photoURL} />
+                </a>
+                <ReactTooltip place="bottom" id='displayName' effect="solid">
+                  <span>{ user.displayName }</span>
+                </ReactTooltip>
               </div>
             )) 
           }
