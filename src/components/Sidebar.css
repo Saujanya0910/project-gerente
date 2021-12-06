@@ -8,7 +8,7 @@
   color: #fff;
 }
 .sidebar-content {
-  position: fixed;
+  position: absolute;
   width: inherit;
 }
 .sidebar .user {

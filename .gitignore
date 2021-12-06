@@ -19,7 +19,7 @@
 .env.production.local
 
 .env
-/firebase
+/.firebase
 .firebaserc
 firebase.json
 firestore.indexes.json
