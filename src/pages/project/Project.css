@@ -47,6 +47,9 @@
 }
 
 /* comment list */
+.project-comments {
+  margin-bottom: 40px;
+}
 .project-comments h4 {
   color: var(--heading-color);
 }

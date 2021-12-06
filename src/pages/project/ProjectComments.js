@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 // css
 import './Project.css'
 import { useFirestore } from '../../hooks/useFirestore';
+import Avatar from '../../components/Avatar';
 
 const Projectcomments = ({ project }) => {
 
@@ -42,6 +43,26 @@ const Projectcomments = ({ project }) => {
     <div className="project-comments">
       <h4>Project Comments</h4>
 
+      {/* render all existing comments */}
+      <ul>
+        { project.comments.length > 0 && project.comments.map(c => (
+          <li key={c.id}>
+            <div className="comment-author">
+              <Avatar src={c.photoURL} />
+              <p>{ c.displayName }</p>
+            </div>
+
+            <div className="comment-date">
+              <p>date</p>
+            </div>
+
+            <div className="comment-content">
+              <p>{ c.content }</p>
+            </div>
+          </li>
+        )) }
+      </ul>
+
       <form className="add-comment" onSubmit={handleSubmit}>
         <label>
           <span>Add new comment:</span>
@@ -52,6 +73,7 @@ const Projectcomments = ({ project }) => {
           />
         </label>
 
+        {/* errors */}
         { response.error &&
           <div className="error">{ response.error }</div>
         }

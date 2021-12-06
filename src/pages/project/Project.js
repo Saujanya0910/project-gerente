@@ -21,10 +21,10 @@ export default function Project() {
       { isPending && <div className="loading">Loading...</div> }
 
       { document && 
-        <div>
+        <>
           <Projectsummary project={document} />
           <Projectcomments project={document} />
-        </div>
+        </>
       }
     </div>
   )
