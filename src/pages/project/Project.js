@@ -3,6 +3,7 @@ import { useDocument } from '../../hooks/useDocument'
 
 // css
 import './Project.css'
+import Projectsummary from './ProjectSummary'
 
 export default function Project() {
   // fetch url param
@@ -20,7 +21,7 @@ export default function Project() {
 
       { document && 
         <div>
-          <h2>{ document.name }</h2>
+          <Projectsummary project={document} />
         </div>
       }
     </div>
