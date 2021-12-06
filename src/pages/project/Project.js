@@ -1,5 +1,6 @@
 import { useParams } from 'react-router'
 import { useDocument } from '../../hooks/useDocument'
+import { Helmet } from 'react-helmet'
 
 // css
 import './Project.css'
@@ -18,6 +19,10 @@ export default function Project() {
 
   return (
     <div className="project-details">
+      <Helmet>
+        <title>Project Details | ProjectGerente</title>
+      </Helmet>
+
       { isPending && <div className="loading">Loading...</div> }
 
       { document && 

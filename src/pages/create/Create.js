@@ -5,6 +5,7 @@ import { useCollection } from '../../hooks/useCollection'
 import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from '../../hooks/useFirestore'
+import { Helmet } from 'react-helmet'
 
 // css
 import './Create.css'
@@ -103,13 +104,14 @@ export default function Create() {
       // on success, redirect
       navigation('/')
     }
-    // else {
-    //   set
-    // }
   }
 
   return (
     <div className="create-form">
+      <Helmet>
+        <title>Add New Project | ProjectGerente</title>
+      </Helmet>
+      
       <h2 className="page-title">Create a New Project</h2>
 
       <form className="" onSubmit={handleSubmit}>

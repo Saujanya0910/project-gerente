@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ProjectList from '../../components/ProjectList'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useCollection } from '../../hooks/useCollection'
+import { Helmet } from 'react-helmet'
 
 // css
 import './Dashboard.css'
@@ -47,6 +48,10 @@ export default function Dashboard() {
 
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | ProjectGerente</title>
+      </Helmet>
+
       <h2 className="page-title">Dashboard</h2>
 
       { error && 
