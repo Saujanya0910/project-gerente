@@ -9,12 +9,14 @@ import { Helmet } from 'react-helmet'
 
 // css
 import './Create.css'
+
 const categories = [
   { value: 'development', label: 'Development' },
   { value: 'design', label: 'Design' },
   { value: 'sales', label: 'Sales' },
   { value: 'marketing', label: 'Marketing' },
   { value: 'business', label: 'Business' },
+  { value: 'communications', label: 'Communications' }
 ]
 
 export default function Create() {
@@ -65,7 +67,7 @@ export default function Create() {
 
     // assigned users selection validations
     if(!assignedUsers.length) {
-      setFormError('Please select at least one user to assign the project to')
+      setFormError('Please select a user to assign the project to')
       window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})
       
       return

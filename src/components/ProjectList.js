@@ -29,13 +29,15 @@ export default function ProjectList({ projects }) {
             key={proj.id}
           >
             {/* proj details */}
-            <h4>
+            <h3>
               { proj.name }
-            </h4>
+              { proj.comments.length > 0 && <span className="material-icons" style={{ margin: '0 15px' }}>comment</span> }
+            </h3>
             <p>
               Due by <span className={`${checkDueDate(proj.dueDate.toDate().toDateString()) ? 'active' : 'expired'}`}>
                 {proj.dueDate.toDate().toDateString()}
               </span>
+              { !checkDueDate(proj.dueDate.toDate().toDateString()) && <span className="material-icons" style={{ margin: '0 15px', color: 'rgb(252, 118, 118)' }}>error_outline</span> }
             </p>
 
             <div className="assigned-to">

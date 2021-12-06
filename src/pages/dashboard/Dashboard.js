@@ -39,6 +39,7 @@ export default function Dashboard() {
       case 'marketing':
       case 'sales':
       case 'business':
+      case 'communications':
         return doc.category === currentFilter
 
       default:
