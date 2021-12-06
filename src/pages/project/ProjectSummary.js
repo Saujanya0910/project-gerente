@@ -46,7 +46,6 @@ const Projectsummary = ({ project }) => {
           Project due by <span className={`${checkDueDate(project.dueDate.toDate().toDateString()) ? 'active' : 'expired'}`}>
             { project.dueDate.toDate().toDateString() }
           </span>
-          {/* { project.dueDate.toDate().toDateString() } */}
         </p>
 
         <p className="details">

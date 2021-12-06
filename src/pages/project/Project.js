@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet'
 
 // css
 import './Project.css'
+
+// components
 import Projectcomments from './ProjectComments'
 import Projectsummary from './ProjectSummary'
 
