@@ -1,16 +1,39 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import Avatar from '../../components/Avatar';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useFirestore } from '../../hooks/useFirestore';
 
 // css
 import './Project.css'
 
 const Projectsummary = ({ project }) => {
+
+  const navigate = useNavigate()
+
+  // current user
+  const { user } = useAuthContext()
+
+  const { deleteDocument, response } = useFirestore('projects')
+
+  // mark as complete -> delete the doc
+  const handleComplete = (e) => {
+    deleteDocument(project.id)
+
+    // redirect on success
+    if(!response.error) {
+      navigate('/')
+    }
+  }
+
   return (
     <div>
       <div className="project-summary">
         <h2 className="page-title">
           { project.name }
         </h2>
+
+        <p>By { project.createdBy.displayName }</p>
 
         <p className="due-date">
           Project due by { project.dueDate.toDate().toDateString() }
@@ -30,6 +53,15 @@ const Projectsummary = ({ project }) => {
           }
         </div>
       </div>
+
+      { user.uid === project.createdBy.id && 
+        (<button 
+          className="btn"
+          onClick={handleComplete}
+        >
+          Mark as Complete
+        </button>)
+      }
     </div>
   );
 }
