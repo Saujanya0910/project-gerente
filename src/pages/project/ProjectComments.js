@@ -5,8 +5,11 @@ import { v4 as uuidv4 } from 'uuid'
 
 // css
 import './Project.css'
+import { useFirestore } from '../../hooks/useFirestore';
 
 const Projectcomments = ({ project }) => {
+
+  const { updateDocument, response } = useFirestore('projects')
 
   const [newComment, setNewComment] = useState('')
 
@@ -24,6 +27,15 @@ const Projectcomments = ({ project }) => {
     }
 
     console.log(commentBody)
+
+    await updateDocument(project.id, {
+      // add cmnt body to existing array
+      comments: [...project.comments, commentBody]
+    })
+
+    if(!response.error) {
+      setNewComment('')
+    }
   }
 
   return (
@@ -40,7 +52,18 @@ const Projectcomments = ({ project }) => {
           />
         </label>
 
-        <button className="btn">Add Comment</button>
+        { response.error &&
+          <div className="error">{ response.error }</div>
+        }
+
+        { !response.isPending && 
+          <button className="btn">Add Comment</button>
+        }
+        
+        { response.isPending && 
+          <button className="btn" disabled>Processing...</button>
+        }
+        
       </form>
     </div>
   );
