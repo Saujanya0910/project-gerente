@@ -22,10 +22,10 @@ export default function Dashboard() {
 
   const projects = documents ? documents.filter(doc => {
     switch(currentFilter) {
-      case 'All':
+      case 'all':
         return true
 
-      case 'Mine':
+      case 'assigned to me':
         let assignedToMe = false
         doc.assignedUsersList.forEach(u => {
           if(user.uid === u.id) {
@@ -33,6 +33,11 @@ export default function Dashboard() {
           }
         })
         return assignedToMe
+
+      case 'created by me':
+        let createdByMe = false
+        createdByMe = doc.createdBy.id === user.uid
+        return createdByMe
       
       case 'development':
       case 'design':
