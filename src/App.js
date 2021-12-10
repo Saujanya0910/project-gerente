@@ -13,6 +13,7 @@ import Login from './pages/login/Login';
 import Project from './pages/project/Project';
 import Signup from './pages/signup/Signup';
 import OnlineUsers from './components/OnlineUsers';
+import NotFound404 from './pages/NotFound404/NotFound404';
 
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
               <Route 
                 path="/projects/:id"
                 element={user ? <Project /> : <Navigate to="/login" />} 
+              />
+              <Route 
+                path="*"
+                element={<NotFound404 /> }
               />
             </Routes>
           </div>

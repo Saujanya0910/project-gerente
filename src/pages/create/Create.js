@@ -158,10 +158,11 @@ export default function Create() {
         <label>
           <span>Assign To:</span>
           {/* user selector */}
-          <Select 
+          <Select
             options={users}
             onChange={(option) => setAssignedUsers(option)}
             isMulti
+            menuPlacement="auto"
           />
         </label>
 
