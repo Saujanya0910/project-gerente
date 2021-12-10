@@ -11,22 +11,14 @@
   padding: 30px;
   border-radius: 4px;
 }
-/* .project-summary .due-date {
-  margin: 10px 0;
-  font-size: 0.9em;
-  color: var(--title-color);
-} */
 .project-summary .due-date .active {
   margin: 10px 0;
   font-size: 0.9em;
-  /* color: var(--title-color); */
   color: rgb(6, 243, 6);
 }
 .project-summary .due-date .expired {
   margin: 10px 0;
   font-size: 0.9em;
-  /* color: var(--title-color); */
-  /* color: rgb(6, 243, 6); */
   color: rgb(252, 118, 118);
 }
 .project-summary .details {
