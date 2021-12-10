@@ -58,10 +58,10 @@ const Projectsummary = ({ project }) => {
           { project.assignedUsersList.map(user => (
               <div key={user.id}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a data-tip data-for='displayName'>
+                <a data-tip data-for={user.displayName}>
                   <Avatar src={user.photoURL} />
                 </a>
-                <ReactTooltip place="bottom" id='displayName' effect="solid">
+                <ReactTooltip place="bottom" id={user.displayName} effect="solid">
                   <span>{ user.displayName }</span>
                 </ReactTooltip>
               </div>
